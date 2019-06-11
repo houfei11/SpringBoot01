@@ -1,0 +1,28 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD com.example.Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bootdemo.mapper.UserMapper">
+
+    <select id="findUserByName" resultType="com.example.bootdemo.entity.User" parameterType="java.lang.String">
+        SELECT * FROM user where =#{name}
+    </select>
+
+    <select id="listUser" resultType="com.example.bootdemo.entity.User">
+        SELECT * FROM user
+    </select>
+
+    <insert id="insertUser" parameterType="com.example.bootdemo.entity.User"
+            keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO user(id,name,gender,age)
+        VALUES (#{id},#{name, jdbcType=VARCHAR},#{gender, jdbcType=VARCHAR},#{age} )
+    </insert>
+
+    <delete id="deleteUser" parameterType="int">
+        delete from user where id=#{id}
+    </delete>
+
+    <update id="updateUser" parameterType="com.example.bootdemo.entity.User">
+    update user set user.name=#{name},user.gender=#{gender},user.age=#{age} where user.id=#{id}
+    </update>
+</mapper>
